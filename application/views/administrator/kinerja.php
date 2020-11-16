@@ -4,7 +4,8 @@
   <i class="fas fa-clipboard"></i> Kinerja Operator Peralatan
   </div>
 
-  <?php 
+    <?php echo $this->session->flashdata('pesan') ?>
+    <?php 
     echo anchor(
         'administrator/kinerja/input',
         '<button class="btn btn-sm btn-primary mb-3">
@@ -14,7 +15,6 @@
     ) 
     ?>
   
-
   <table class="table table-bordered table-striped">
   	<tr>
   		<th class="text-center">No</th>
@@ -29,8 +29,9 @@
   			<td><?php echo $k->nama ?></td>
   			<td><?php echo $k->bidang ?></td>
   			<td><?php echo $k->kegiatan ?></td>
-  			<img src="<?php echo base_url('assets/upload/').$k->dokumentasi ?>">
-
+            <td>
+            <a href="<?php echo base_url('assets/upload/').$k->dokumentasi ?>">dokumentasi</a>
+            </td>
   		<tr>
   	<?php endforeach; ?>
   </table>

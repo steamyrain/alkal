@@ -1,5 +1,5 @@
 <div class="container-fluid">
-
+    <?php echo $this->session->flashdata('pesan') ?>
 	<?php echo form_open_multipart('administrator/kinerja/input_aksi'); ?>
 		<div class="form-group">
 			<label> Nama Lengkap :</label>
@@ -29,8 +29,9 @@
 		<div class="form-group">
 			<label>Dokumentasi</label>
 			<input type='file' name='dokumentasi' class="form-control">
+			<?php echo form_error('dokumentasi', '<div class="text-danger small" ml-3>') ?>
 		</div>
 		
-		<button type="submit" class="btn btn-primary mb-5 mt-3">Simpan</button>
-	<?php echo form_close(); ?>
+		<button type="submit" name="submit" value="upload" class="btn btn-primary mb-5 mt-3">Simpan</button>
+	 <?php echo "</form>"; ?>
 </div>

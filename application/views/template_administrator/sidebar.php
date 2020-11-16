@@ -51,6 +51,7 @@
             <h6 class="collapse-header">Pilihan :</h6>
             <a class="collapse-item" href="utilities-color.html">ATPM</a>
             <a class="collapse-item" href="utilities-border.html">Swakelola</a>
+            <a class="collapse-item" href="<?php echo base_url('administrator/laporan') ?>">Laporan Kerja</a>
           </div>
         </div>
       </li>
