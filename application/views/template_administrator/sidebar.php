@@ -76,9 +76,23 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('administrator/auth/logout') ?>">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Logout</span></a>
+        <form method="post" action="<?= route('logout') ;?>">
+            <?php if( config_item('csrf_protection') === TRUE) { ?>
+
+                <?php
+                    $csrf = array(
+                        'name' => ci()->security->get_csrf_token_name(),
+                        'hash' => ci()->security->get_csrf_hash()
+                    );
+                ?>
+
+                <input type="hidden" name="<?= $csrf['name'] ;?>" value="<?= $csrf['hash'] ;?>" />
+
+            <?php } ?>
+
+              <i class="fas fa-sign-out-alt"></i>
+            <input type="submit" value="Log out" />
+        </form>
       </li>
 
 
