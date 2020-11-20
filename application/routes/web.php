@@ -55,6 +55,20 @@ Route::post('logout', 'AuthController@logout')->name('logout');
 
 Route::get('dashboard','dashboard@index',['namespace'=>'administrator'])->name('dashboard');
 
+Route::get('userdashboard',function() {
+    $currentUser = Auth::user();
+    $userName = $currentUser->getUsername();
+    $role = $currentUser->getRoles();
+    $user = [
+        'username'=>$userName,
+        'role'=>$role
+    ];
+    ci()->load->view('template_pegawai/header');
+    ci()->load->view('template_pegawai/sidebar');
+    ci()->load->view('pegawai/dashboard',$user);
+    ci()->load->view('template_pegawai/footer');
+})->name('dashboard-user');
+
 //Route::get('login','login@index',['namespace'=>'administrator'])->name('login');
 
 //Route::match(['get','post'],'dologin','login@dologin',['namespace'=>'administrator'])->name('dologin');
