@@ -4,7 +4,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background: black;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -74,7 +74,6 @@
       </li>
 
       <li class="nav-item">
-          <i class="fas fa-sign-out-alt"></i>
             <form method="post" action="<?= route('logout') ;?>">
             <?php if( config_item('csrf_protection') === TRUE) { ?>
                 <?php
@@ -85,7 +84,21 @@
                 ?>
                 <input type="hidden" name="<?= $csrf['name'] ;?>" value="<?= $csrf['hash'] ;?>" />
             <?php } ?>
-            <input type="submit" value="Log out" />
+            <a class="nav-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <input type="submit" value="Log out"
+                style="
+                    overflow: visible;
+                    width: auto;
+                    font-size: 0.75rem;
+                    color: inherit;
+                    background: none;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    cursor: pointer;
+                "/>
+            </a>
         </form>
       </li>
 

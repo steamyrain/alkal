@@ -4,10 +4,10 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background: black;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo route('dashboard-admin') ?>">
         <div class="sidebar-brand-icon">
           <img src="<?php echo base_url() ?>assets/img/ab.png" alt="ab" width="60">
         </div>
@@ -35,7 +35,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="<?php echo base_url('administrator/kinerja') ?>">Kinerja Operator Peralatan</a>
+            <a class="collapse-item" href="<?php echo route('kinerja-admin') ?>">Kinerja</a>
           </div>
         </div>
       </li>
@@ -89,9 +89,21 @@
                 <input type="hidden" name="<?= $csrf['name'] ;?>" value="<?= $csrf['hash'] ;?>" />
 
             <?php } ?>
-
-              <i class="fas fa-sign-out-alt"></i>
-            <input type="submit" value="Log out" />
+            <a class="nav-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <input type="submit" value="Log out"
+                style="
+                    overflow: visible;
+                    width: auto;
+                    font-size: 0.75rem;
+                    color: inherit;
+                    background: none;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    cursor: pointer;
+                "/>
+            </a>
         </form>
       </li>
 

@@ -18,42 +18,26 @@
  *      -> $route['blog/(:any)'] = 'blog/post/$1'
  */
 
-
-/*
 Route::get('/', function(){
    luthier_info();
 })->name('homepage');
-*/
 
-// test route for index
-// Route::get('test','foo@index');
-
-// test route for controller behind directory
-// Route::get('bar','login@index',['namespace'=>'administrator']);
-
-// test route for welcome message
-// Route::get('welcome','welcome@index');
-
-// disabled for login testing purposes
-/*
-Route::get('/',function() {
-    redirect(route('login'));
+Route::set('404_override', function(){
+    show_404();
 });
 
-Route::get('login','login@index',['namespace'=>'administrator'])->name('login');
- */
-
-//Route::auth();
-
-Route::get('/', function(){
-   luthier_info();
-})->name('homepage');
+Route::set('translate_uri_dashes',FALSE);
 
 Route::match(['get','post'],'login','AuthController@login')->name('login');
 
 Route::post('logout', 'AuthController@logout')->name('logout');
 
-Route::get('dashboard','dashboard@index',['namespace'=>'administrator'])->name('dashboard');
+Route::group('admin',['namespace'=>'administrator','middleware'=>['AuthCheckMiddleware']],function() {
+    Route::get('dashboard','DashboardAdminController@index')->name('dashboard-admin');
+    Route::get('kinerja','KinerjaAdminController@index')->name('kinerja-admin');
+    Route::get('kinerja/form','KinerjaAdminController@input')->name('kinerja-admin-form');
+    Route::post('kinerja/input','KinerjaAdminController@input_aksi')->name('kinerja-admin-input');
+});
 
 Route::get('userdashboard',function() {
     $currentUser = Auth::user();
@@ -68,18 +52,4 @@ Route::get('userdashboard',function() {
     ci()->load->view('pegawai/dashboard',$user);
     ci()->load->view('template_pegawai/footer');
 })->name('dashboard-user');
-
-//Route::get('login','login@index',['namespace'=>'administrator'])->name('login');
-
-//Route::match(['get','post'],'dologin','login@dologin',['namespace'=>'administrator'])->name('dologin');
-
-//Route::post('logout','dashboard@logout',['namespace'=>'administrator'])->name('logout');
-
-//Route::get('test','test@index',['namespace'=>'administrator']);
-
-Route::set('404_override', function(){
-    show_404();
-});
-
-Route::set('translate_uri_dashes',FALSE);
 
