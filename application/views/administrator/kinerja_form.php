@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <?php echo $this->session->flashdata('pesan') ?>
-	<?php echo form_open_multipart('administrator/kinerja/input_aksi'); ?>
+	<?php echo form_open_multipart(route('kinerja-admin-input')); ?>
 		<div class="form-group">
 			<label> Nama Lengkap :</label>
 			<select name="nama" class="form-control">

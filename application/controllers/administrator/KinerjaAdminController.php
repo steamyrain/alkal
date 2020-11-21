@@ -1,17 +1,19 @@
-<?php
+<?php class KinerjaAdminController extends CI_Controller{ 
 
-class Kinerja extends CI_Controller{
-
+    // index function acts as KinerjaAdminController index.html
+    // this function will show table of all kinerja data
+    // from database
 	public function index()
 	{
 		$data['title'] = "data kinerja";
-		$data['kinerja']	= $this->kinerja_model->tampil_data()->result();
+		$data['kinerja'] = $this->kinerja_model->tampil_data()->result();
 		$this->load->view('template_administrator/header');
 		$this->load->view('template_administrator/sidebar');
 		$this->load->view('administrator/kinerja',$data);
 		$this->load->view('template_administrator/footer');
 	}
 
+    // input function will load input form for kinerja
 	public function input()
 	{
         // use this array value to repopoulate form values
@@ -33,6 +35,10 @@ class Kinerja extends CI_Controller{
 		$this->load->view('administrator/kinerja_form');
 		$this->load->view('template_administrator/footer');
 	}
+
+    // input_aksi function will process the form post
+    // and insert the post data to database using
+    // model kinerja_model
 	public function input_aksi()
 	{
         // rules loaded
@@ -70,7 +76,7 @@ class Kinerja extends CI_Controller{
                                 show
                                 " 
                         role="alert">
-                    Dokumentasi gagal diunggah!
+                    <?php echo "error" ?>
                     <button 
                         type="button" 
                         class="close" 
@@ -82,7 +88,7 @@ class Kinerja extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                $this->input();
+                redirect(route('kinerja-admin-form'),'refresh');
             }
             else {
                 $dokumentasi = $this->upload->data('file_name');
@@ -114,12 +120,14 @@ class Kinerja extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                    redirect('administrator/kinerja');
+                    redirect(route('kinerja-admin'),'refresh');
             }
 		}
     }
 
-	public function _rules()
+    // _rules function is a set of kinerja_form specific
+    // validation rules
+	private function _rules()
 	{
 		$this->form_validation->set_rules('nama','nama','required',['required' => 'Nama Wajib Diisi']);
 		$this->form_validation->set_rules('bidang','bidang','required',['required' => 'Bidang Wajib Diisi']);
@@ -127,7 +135,8 @@ class Kinerja extends CI_Controller{
         $this->form_validation->set_rules('dokumentasi','dokumentasi','callback_check_dokumentasi');
 	}
     
-    // custom callback function for field dokumentasi
+    // check_dokumentasi is a custom callback function 
+    // for field dokumentasi
     public function check_dokumentasi() {
         if($_FILES['dokumentasi']['size']==0) {
             $this->form_validation->set_message('check_dokumentasi','Dokumentasi wajib diunggah');

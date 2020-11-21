@@ -28,20 +28,44 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-3 text-info text-center">
-            <a href="<?php echo base_url() ?>"><p class="nav-link small text-info">Kinerja Operator peralatan</p></a>
+            <a href="<?php echo base_url('pegawai/kinerja') ?>"><p class="nav-link small text-info">Kinerja Operator peralatan</p></a>
             <i class="fas fa-3x fa-users"></i>
           </div>
 
           <div class="col-md-3 text-info text-center">
-            <a href="<?php echo base_url() ?>"><p class="nav-link small text-info">Pemeliharaan Pada Peralatan</p></a>
+            <a href="<?php echo base_url('pegawai/atpm') ?>"><p class="nav-link small text-info">ATPM</p></a>
             <i class="fas fa-3x fa-tools"></i>
           </div>
 
           <div class="col-md-3 text-info text-center">
-            <a href="<?php echo base_url() ?>"><p class="nav-link small text-info">Penggunaan Bahan Bakar Minyak(BBM)</p></a>
+            <a href="<?php echo base_url('pegawai/laporan') ?>"><p class="nav-link small text-info">Laporan Kerja</p></a>
             <i class="fas fa-3x fa-truck"></i>
           </div>
+          <div class="col-md-3 text-info text-center">
+            <a href="<?php echo base_url('pegawai/BBM') ?>"><p class="nav-link small text-info">BBM</p></a>
+            <i class="fas fa-3x fa-gas-pump"></i>
+          </div>
       </div>
+         <div class="row">
+          <div class="col-md-3 text-info text-center">
+            <a href="<?php echo base_url('pegawai/tire') ?>"><p class="nav-link small text-info">Tire</p></a>
+            <i class="far fa-3x fa-circle"></i>
+          </div>
+
+          <div class="col-md-3 text-info text-center">
+            <a href="<?php echo base_url('pegawai/oil') ?>"><p class="nav-link small text-info">Oil</p></a>
+            <i class="fas fa-3x fa-oil-can"></i>
+          </div>
+
+          <div class="col-md-3 text-info text-center">
+            <a href="<?php echo base_url('pegawai/accu') ?>"><p class="nav-link small text-info">Accu</p></a>
+            <i class="fas fa-3x fa-battery-three-quarters"></i>
+          </div>
+          <div class="col-md-3 text-info text-center">
+            <a href="<?php echo base_url('pegawai/filter') ?>"><p class="nav-link small text-info">Filter</p></a>
+            <i class="fas fa-3x fa-filter"></i>
+          </div>
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>

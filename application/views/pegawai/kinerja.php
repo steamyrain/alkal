@@ -4,17 +4,16 @@
   <i class="fas fa-clipboard"></i> Kinerja Operator Peralatan
   </div>
 
-    <?php echo $this->session->flashdata('pesan') ?>
-    <?php 
+  <?php 
     echo anchor(
-        route('kinerja-admin-form'),
+        route('kinerja-user-form'),
         '<button class="btn btn-sm btn-primary mb-3">
             <i class="fas fa-plus fa-sm"></i> 
             Tambah Data
         </button>'
     ) 
     ?>
-  
+
   <table class="table table-bordered table-striped">
   	<tr>
   		<th class="text-center">No</th>
@@ -22,7 +21,7 @@
   		<th class="text-center">Bidang</th>
   		<th class="text-center">Kegiatan</th>
   		<th class="text-center">Dokumentasi</th>
-
+    </tr>
   	<?php $no=1; foreach($kinerja as $k) : ?>
   		<tr>
   			<td width="20px"><?php echo $no++ ?></td>

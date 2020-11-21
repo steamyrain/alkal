@@ -7,20 +7,18 @@
     <ul style="background: black;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo route('dashboard-admin') ?>">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo route("dashboard-user") ?>">
         <div class="sidebar-brand-icon">
           <img src="<?php echo base_url() ?>assets/img/ab.png" alt="ab" width="60">
         </div>
         <div class="sidebar-brand-text mx-1">SILOLABIMA</div>
       </a>
-      <?php
-      echo "";?>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="dashboard">
           <img src="<?php echo base_url() ?>assets/img/BM.png" alt="ab" width="42">
           <span>UNIT PERALATAN DAN PERBEKALAN BINA MARGA</span></a>
       </li>
@@ -35,7 +33,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="<?php echo route('kinerja-admin') ?>">Kinerja</a>
+            <a class="collapse-item" href="<?php echo route('kinerja-user') ?>">Kinerja Operator Peralatan</a>
           </div>
         </div>
       </li>
@@ -49,9 +47,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="utilities-color.html">ATPM</a>
-            <a class="collapse-item" href="utilities-border.html">Swakelola</a>
-            <a class="collapse-item" href="<?php echo base_url('administrator/laporan') ?>">Laporan Kerja</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/atpm') ?>">ATPM</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/swakelola') ?>">Swakelola</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/laporan') ?>">Laporan Kerja</a>
           </div>
         </div>
       </li>
@@ -66,28 +64,25 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="login.html">BBM</a>
-            <a class="collapse-item" href="register.html">Tire</a>
-            <a class="collapse-item" href="forgot-password.html">Oil</a>
-            <a class="collapse-item" href="404.html">Accu</a>
-            <a class="collapse-item" href="blank.html">Filter</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/bbm') ?>">BBM</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/tire') ?>">Tire</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/oil') ?>">Oil</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/accu') ?>">Accu</a>
+            <a class="collapse-item" href="<?php echo base_url('pegawai/filter') ?>">Filter</a>
           </div>
         </div>
       </li>
 
       <li class="nav-item">
-        <form method="post" action="<?= route('logout') ;?>">
+            <form method="post" action="<?= route('logout') ;?>">
             <?php if( config_item('csrf_protection') === TRUE) { ?>
-
                 <?php
                     $csrf = array(
                         'name' => ci()->security->get_csrf_token_name(),
                         'hash' => ci()->security->get_csrf_hash()
                     );
                 ?>
-
                 <input type="hidden" name="<?= $csrf['name'] ;?>" value="<?= $csrf['hash'] ;?>" />
-
             <?php } ?>
             <a class="nav-link">
                 <i class="fas fa-sign-out-alt"></i>
