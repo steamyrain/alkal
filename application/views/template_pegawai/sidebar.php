@@ -7,7 +7,7 @@
     <ul style="background: black;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo route("dashboard-user") ?>">
         <div class="sidebar-brand-icon">
           <img src="<?php echo base_url() ?>assets/img/ab.png" alt="ab" width="60">
         </div>
@@ -33,7 +33,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="<?php echo base_url('pegawai/kinerja') ?>">Kinerja Operator Peralatan</a>
+            <a class="collapse-item" href="<?php echo route('kinerja-user') ?>">Kinerja Operator Peralatan</a>
           </div>
         </div>
       </li>

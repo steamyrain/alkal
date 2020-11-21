@@ -6,7 +6,7 @@
 
   <?php 
     echo anchor(
-        'pegawai/kinerja/input',
+        route('kinerja-user-form'),
         '<button class="btn btn-sm btn-primary mb-3">
             <i class="fas fa-plus fa-sm"></i> 
             Tambah Data

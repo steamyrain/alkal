@@ -19,7 +19,7 @@
  */
 
 Route::get('/', function(){
-   luthier_info();
+    redirect(route('login'),'refresh');
 })->name('homepage');
 
 Route::set('404_override', function(){
@@ -39,17 +39,10 @@ Route::group('admin',['namespace'=>'administrator','middleware'=>['AuthCheckMidd
     Route::post('kinerja/input','KinerjaAdminController@input_aksi')->name('kinerja-admin-input');
 });
 
-Route::get('userdashboard',function() {
-    $currentUser = Auth::user();
-    $userName = $currentUser->getUsername();
-    $role = $currentUser->getRoles();
-    $user = [
-        'username'=>$userName,
-        'role'=>$role
-    ];
-    ci()->load->view('template_pegawai/header');
-    ci()->load->view('template_pegawai/sidebar');
-    ci()->load->view('pegawai/dashboard',$user);
-    ci()->load->view('template_pegawai/footer');
-})->name('dashboard-user');
+Route::group('user',['namespace'=>'pegawai','middleware'=>['AuthCheckMiddleware']],function() {
+    Route::get('dashboard','DashboardUserController@index')->name('dashboard-user');
+    Route::get('kinerja','KinerjaUserController@index')->name('kinerja-user');
+    Route::get('kinerja/form','KinerjaUserController@input')->name('kinerja-user-form');
+    Route::post('kinerja/input','KinerjaUserController@input_aksi')->name('kinerja-user-input');
+});
 

@@ -1,38 +1,32 @@
 <?php
 
-class Kinerja extends CI_Controller{
+class KinerjaUserController extends CI_Controller{
 
+    // index function acts as KinerjaUserController index.html
+    // this function will show table of user's kinerja data
+    // from database
 	public function index()
 	{
 		$data['title'] = "data kinerja";
-		$data['kinerja']	= $this->kinerja_model->tampil_data()->result();
-		$this->load->view('template_administrator/header');
-		$this->load->view('template_administrator/sidebar');
-		$this->load->view('administrator/kinerja',$data);
-		$this->load->view('template_administrator/footer');
+		$data['kinerja'] = $this->kinerja_model->tampil_data()->result();
+		$this->load->view('template_pegawai/header');
+		$this->load->view('template_pegawai/sidebar');
+		$this->load->view('pegawai/kinerja',$data);
+		$this->load->view('template_pegawai/footer');
 	}
 
+    // input function will load input form for kinerja
 	public function input()
 	{
-        // use this array value to repopoulate form values
-        /*
-		$data = array(
-			'no'  => set_value('no'),
-			'nama'   => set_value('nama'),
-			'bidang'   => set_value('bidang'),
-			'kegiatan'   => set_value('kegiatan'),
-			'dokumentasi'   => set_value('dokumentasi'),
-		);
-         */
-
-		$this->load->view('template_administrator/header');
-		$this->load->view('template_administrator/sidebar');
-
-        // use this to repopulate form values
-		//$this->load->view('administrator/kinerja_form',$data);
-		$this->load->view('administrator/kinerja_form');
-		$this->load->view('template_administrator/footer');
+		$this->load->view('template_pegawai/header');
+		$this->load->view('template_pegawai/sidebar');
+		$this->load->view('pegawai/kinerja_form');
+		$this->load->view('template_pegawai/footer');
 	}
+
+    // input_aksi function will process the form post
+    // and insert the post data to database using
+    // model kinerja_model
 	public function input_aksi()
 	{
         // rules loaded
@@ -70,7 +64,7 @@ class Kinerja extends CI_Controller{
                                 show
                                 " 
                         role="alert">
-                    Dokumentasi gagal diunggah!
+                    <?php echo "error" ?>
                     <button 
                         type="button" 
                         class="close" 
@@ -82,7 +76,7 @@ class Kinerja extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                $this->input();
+                redirect(route('kinerja-user-form'),'refresh');
             }
             else {
                 $dokumentasi = $this->upload->data('file_name');
@@ -96,7 +90,8 @@ class Kinerja extends CI_Controller{
                 $this->session->set_flashdata('pesan',
                     '<div 
                         class=" alert 
-                                alert-success 
+                                alert-warning 
+                                alert-danger 
                                 dismissible 
                                 fade 
                                 show
@@ -114,11 +109,13 @@ class Kinerja extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                    redirect('administrator/kinerja');
+                    redirect('pegawai/kinerja');
             }
 		}
     }
 
+    // _rules function is a set of kinerja_form specific
+    // validation rules
 	public function _rules()
 	{
 		$this->form_validation->set_rules('nama','nama','required',['required' => 'Nama Wajib Diisi']);
@@ -127,7 +124,8 @@ class Kinerja extends CI_Controller{
         $this->form_validation->set_rules('dokumentasi','dokumentasi','callback_check_dokumentasi');
 	}
     
-    // custom callback function for field dokumentasi
+    // check_dokumentasi is a custom callback function 
+    // for field dokumentasi
     public function check_dokumentasi() {
         if($_FILES['dokumentasi']['size']==0) {
             $this->form_validation->set_message('check_dokumentasi','Dokumentasi wajib diunggah');
@@ -136,5 +134,6 @@ class Kinerja extends CI_Controller{
         else {
             return true;
         }
-    }
+    }	
+
 }

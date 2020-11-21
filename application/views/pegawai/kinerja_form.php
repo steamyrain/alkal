@@ -4,7 +4,7 @@
   	<i class="fas fa-clipboard"></i> Form Input Kinerja
   	</div>
 
-	<?php echo form_open_multipart('pegawai/kinerja/input_aksi'); ?>
+	<?php echo form_open_multipart(route('kinerja-user-input')); ?>
 		<div class="form-group">
 			<label> Nama Lengkap :</label>
 			<select name="nama" class="form-control" value="<?php echo $k->nama?>">
@@ -149,10 +149,9 @@
 			<option>Wawan Setiawan</option>
 			<option>Aulia Mursalin</option>
 			<option>Muhammad Faisal Ridho</option>
-			<option>Nana<option> Supriyatna</option>
+			<option>Nana Supriyatna</option>
 			<option>Ahmad Zulfikar</option>
 			<option>Reinhard Aditya Petradi</option>
- 		    <option></option>
   			</select>
 		</div>
 		<div class="form-group">
@@ -176,6 +175,7 @@
 		<div class="form-group">
 			<label>Dokumentasi</label>
 			<input type='file' name='dokumentasi' class="form-control">
+			<?php echo form_error('dokumentasi', '<div class="text-danger small" ml-3>') ?>
 		</div>
 		
 		<button type="submit" class="btn btn-primary mb-5 mt-3">Simpan</button>
