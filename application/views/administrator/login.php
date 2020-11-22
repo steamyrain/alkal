@@ -9,15 +9,9 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Login Alkal</h1>
-                    <?php echo $this->session->flashdata('pesan') ?>
-                  </div>
-                    <!-- using test login -->
-                    <!-- 
-                    <?php //echo form_open(route('dologin')); ?>
-                    -->
-                <form method="post">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Login Alkal</h1>
+                    </div>
                     <?php
                         $errorMessages = [
                             'ERR_LOGIN_INVALID_CREDENTIALS' => 'Incorrect username or password',
@@ -31,6 +25,7 @@
                             <?= $errorMessages[$message] ;?>
                         </div>    
                     <?php } ?>                    
+                <form method="post">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Masukkan Username" name="username">
                       <?php echo form_error('username', '<div class="text-danger small ml-3">','</div>') ?>
@@ -41,7 +36,7 @@
                     </div>
                   <button class="btn btn-primary btn-user btn-block">login</button>
                 </form>
-                  </div>
+                </div>
                 </div>
               </div>
             </div>
