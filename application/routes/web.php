@@ -36,6 +36,9 @@ Route::group('admin',['namespace'=>'administrator','middleware'=>['AuthCheckMidd
     Route::get('dashboard','DashboardAdminController@index')->name('dashboard-admin');
     Route::get('kinerja','KinerjaAdminController@index')->name('kinerja-admin');
     Route::get('kinerja/form','KinerjaAdminController@input')->name('kinerja-admin-form');
+    Route::get('user','NewUserAdminController@index')->name('user-table-admin');
+    Route::get('user/form','NewUserAdminController@input')->name('adduser-admin-form');
+    Route::post('user/input','NewUserAdminController@input_aksi')->name('adduser-admin-input');
     Route::post('kinerja/input','KinerjaAdminController@input_aksi')->name('kinerja-admin-input');
 });
 

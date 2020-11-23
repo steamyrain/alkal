@@ -5,10 +5,9 @@ class User_model extends CI_Model{
     private $table='alkal_users';
 
     // get all user data
-	public function ambil_data($id)
+	public function ambil_semua_data()
 	{
-		$this->db->where('username', $id);
-		return $this->db->get('user')->row();
+		return $this->db->get($this->table);
 	}
 
     // add new user
