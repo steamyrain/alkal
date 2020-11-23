@@ -6,7 +6,7 @@
     ?>
 		<div class="form-group">
 			<label>Nama Depan :</label>
-			<input type="text" name="first_name" class="form-control">
+            <input type="text" name="first_name" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Nama Belakang :</label>

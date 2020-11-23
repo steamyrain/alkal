@@ -1,5 +1,7 @@
 <?php
 
+use Luthier\Debug;
+
 class KinerjaUserController extends CI_Controller{
 
     // index function acts as KinerjaUserController index.html
@@ -18,9 +20,19 @@ class KinerjaUserController extends CI_Controller{
     // input function will load input form for kinerja
 	public function input()
 	{
+        // prepopulate with specific user's data
+        $currentUser = Auth::user();
+        $queryJob = $this->job_model->ambil_job_where($currentUser->getUserJobId());
+        $job = $queryJob->result()[0];
+        $data = [
+            'fullName'=>$currentUser->getFullName(),
+            'uId'=>$currentUser->getUserId(),
+            'jId'=>$job->id,
+            'jJob'=>$job->job
+        ];
 		$this->load->view('template_pegawai/header');
 		$this->load->view('template_pegawai/sidebar');
-		$this->load->view('pegawai/kinerja_form');
+		$this->load->view('pegawai/kinerja_form',$data);
 		$this->load->view('template_pegawai/footer');
 	}
 

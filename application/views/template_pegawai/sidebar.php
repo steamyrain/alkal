@@ -33,7 +33,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pilihan :</h6>
-            <a class="collapse-item" href="<?php echo route('kinerja-user') ?>">Kinerja Operator Peralatan</a>
+            <a class="collapse-item" href="<?php echo route('kinerja-user') ?>">Kinerja</a>
           </div>
         </div>
       </li>

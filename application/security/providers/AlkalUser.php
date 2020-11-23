@@ -31,4 +31,16 @@ class AlkalUser implements UserInterface {
         }
         return $this->permissions;
     }
+
+    public function getFullName() {
+        return $this->user->first_name." ".$this->user->last_name;
+    }
+
+    public function getUserId() {
+        return $this->user->id;
+    }
+
+    public function getUserJobId() {
+        return $this->user->jobId;
+    }
 }

@@ -19,7 +19,7 @@
  */
 
 Route::get('/', function(){
-    redirect(route('login'),'refresh');
+    luthier_info();
 })->name('homepage');
 
 Route::set('404_override', function(){
