@@ -3,7 +3,7 @@
 	<div class="alert alert-success" role="alert">
   	<i class="fas fa-clipboard"></i> Form Input Kinerja
   	</div>
-
+    <?php echo $this->session->flashdata('pesan') ?>
 	<?php echo form_open_multipart(route('kinerja-user-input')); ?>
 		<div class="form-group">
 			<label> Nama Lengkap : </label>
@@ -12,6 +12,7 @@
 		<div class="form-group">
 			<label>Bidang Kerja : </label>
             <label style="font-weight: bold"><?php echo $jJob; ?></label>
+        </div>
 		<div class="form-group">
 			<label>Kegiatan</label>
 			<input type="text" name="kegiatan"

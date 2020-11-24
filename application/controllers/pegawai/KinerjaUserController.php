@@ -4,13 +4,34 @@ use Luthier\Debug;
 
 class KinerjaUserController extends CI_Controller{
 
+    private AlkalUser $currentUser; 
+    private string $fullName;
+    private int $uID;
+    private int $jID;
+
+    public function __construct() {
+        parent::__construct();
+        $this->currentUser = Auth::user();
+        $this->fullName  = $this->currentUser->getFullName();
+        $this->uId  = $this->currentUser->getUserId();
+        $this->jId  = $this->currentUser->getUserJobId();
+    }
+
     // index function acts as KinerjaUserController index.html
     // this function will show table of user's kinerja data
     // from database
 	public function index()
 	{
-		$data['title'] = "data kinerja";
-		$data['kinerja'] = $this->kinerja_model->tampil_data()->result();
+        $fullName = $this->fullName;
+        $userId = $this->uId;
+        $kinerja = $this->kinerja_model->data_user_spesifik($userId)->result();
+
+        $data = [
+            'title'=>"Data Kinerja",
+            'fullName'=>$fullName,
+            'kinerja'=> $kinerja
+        ];
+
 		$this->load->view('template_pegawai/header');
 		$this->load->view('template_pegawai/sidebar');
 		$this->load->view('pegawai/kinerja',$data);
@@ -21,13 +42,12 @@ class KinerjaUserController extends CI_Controller{
 	public function input()
 	{
         // prepopulate with specific user's data
-        $currentUser = Auth::user();
-        $queryJob = $this->job_model->ambil_job_where($currentUser->getUserJobId());
+        $queryJob = $this->job_model->ambil_job_where($this->jId);
         $job = $queryJob->result()[0];
         $data = [
-            'fullName'=>$currentUser->getFullName(),
-            'uId'=>$currentUser->getUserId(),
-            'jId'=>$job->id,
+            'fullName'=>$this->fullName,
+            'uId'=>$this->uId,
+            'jId'=>$this->jId,
             'jJob'=>$job->job
         ];
 		$this->load->view('template_pegawai/header');
@@ -52,10 +72,8 @@ class KinerjaUserController extends CI_Controller{
         // form is valid
         else 
         {
-            // assign form input values to variables
-			$nama 			= $this->input->post('nama');
-			$bidang 		= $this->input->post('bidang');
-			$kegiatan 		= $this->input->post('kegiatan');
+            // assign variables with form values 
+			$kegiatan = $this->input->post('kegiatan');
 
             // codeigniter's upload config
             $config['upload_path'] = './assets/upload/';
@@ -67,6 +85,7 @@ class KinerjaUserController extends CI_Controller{
 
             // check if upload is successful
             if(!$this->upload->do_upload('dokumentasi')) {
+                echo $this->upload->display_errors();
                 $this->session->set_flashdata('pesan',
                     '<div 
                         class=" alert 
@@ -76,7 +95,7 @@ class KinerjaUserController extends CI_Controller{
                                 show
                                 " 
                         role="alert">
-                    <?php echo "error" ?>
+                        Upload Gagal
                     <button 
                         type="button" 
                         class="close" 
@@ -88,16 +107,17 @@ class KinerjaUserController extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                redirect(route('kinerja-user-form'),'refresh');
+                redirect(route('kinerja-user-form'));
             }
             else {
                 $dokumentasi = $this->upload->data('file_name');
                 $data = array(
-                    'nama' => $nama,
-                    'bidang' => $bidang,
+                    'userId' => $this->uId,
                     'kegiatan' => $kegiatan,
                     'dokumentasi' => $dokumentasi,
+                    'jobId'=> $this->jId
                 );
+                Debug::log($data,'info');
                 $this->kinerja_model->input_data($data);
                 $this->session->set_flashdata('pesan',
                     '<div 
@@ -121,7 +141,7 @@ class KinerjaUserController extends CI_Controller{
                     </span>
                     </button>
                     </div>');
-                    redirect('pegawai/kinerja');
+                    redirect(route('kinerja-user'));
             }
 		}
     }
@@ -130,8 +150,6 @@ class KinerjaUserController extends CI_Controller{
     // validation rules
 	public function _rules()
 	{
-		$this->form_validation->set_rules('nama','nama','required',['required' => 'Nama Wajib Diisi']);
-		$this->form_validation->set_rules('bidang','bidang','required',['required' => 'Bidang Wajib Diisi']);
 		$this->form_validation->set_rules('kegiatan','kegiatan','required',['required' => 'Kegiatan Wajib Diisi']);
         $this->form_validation->set_rules('dokumentasi','dokumentasi','callback_check_dokumentasi');
 	}
