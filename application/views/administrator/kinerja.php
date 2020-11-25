@@ -21,14 +21,16 @@
   		<th class="text-center">Nama</th>
   		<th class="text-center">Bidang</th>
   		<th class="text-center">Kegiatan</th>
+  		<th class="text-center">Tanggal</th>
   		<th class="text-center">Dokumentasi</th>
 
   	<?php $no=1; foreach($kinerja as $k) : ?>
   		<tr>
   			<td width="20px"><?php echo $no++ ?></td>
-  			<td><?php echo $k->nama ?></td>
-  			<td><?php echo $k->bidang ?></td>
+  			<td><?php echo $k->first_name." ".$k->last_name ?></td>
+  			<td><?php echo $k->job ?></td>
   			<td><?php echo $k->kegiatan ?></td>
+  			<td><?php echo $k->created_at ?></td>
             <td>
             <a href="<?php echo base_url('assets/upload/').$k->dokumentasi ?>">dokumentasi</a>
             </td>
