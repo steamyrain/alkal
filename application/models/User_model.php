@@ -12,10 +12,6 @@ class User_model extends CI_Model{
 
     // add new user
     public function create_user($user){
-        if(isset($user['password'])) {
-            $user['password'] = Auth::loadUserProvider('AlkalUserProvider')
-                ->hashPassword($user['password']);
-        }
-        $this->db()->insert('alkal_users',$user);
+        $this->db->insert($this->table,$user);
     }
 }

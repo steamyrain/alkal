@@ -7,10 +7,16 @@
 		<div class="form-group">
 			<label>Nama Depan :</label>
             <input type="text" name="first_name" class="form-control">
+            <?php echo form_error('first_name', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			<label>Nama Belakang :</label>
 			<input type="text" name="last_name" class="form-control">
+            <?php echo form_error('last_name', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			<label>Jenis Kelamin :</label>
@@ -18,14 +24,23 @@
             <label for="l">Laki-Laki</label>
             <input type="radio" id="p" name="gender" value="P"/>
             <label for="p">Perempuan</label>
+            <?php echo form_error('gender', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			<label>Username :</label>
 			<input type="text" name="username" class="form-control">
+            <?php echo form_error('username', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			<label>Password :</label>
 			<input type="password" name="password" class="form-control">
+            <?php echo form_error('password', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			<label>Role :</label>
@@ -33,6 +48,9 @@
             <label for="user">User</label>
             <input type="radio" id="admin" name="role" value="admin"/>
             <label for="admin">Admin</label>
+            <?php echo form_error('role', 
+                '<div class="text-danger small" ml-3>') 
+            ?>
 		</div>
 		<div class="form-group">
 			 <p>Bidang Kerja:</p>
@@ -47,7 +65,7 @@
                 </label>
                 <br>
             <?php endforeach; ?>
-            <?php echo form_error('job', 
+            <?php echo form_error('jobId', 
                 '<div class="text-danger small" ml-3>') 
             ?>
 		</div>
